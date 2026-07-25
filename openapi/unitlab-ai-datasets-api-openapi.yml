@@ -1,0 +1,124 @@
+openapi: 3.0.3
+info:
+  title: Unitlab SDK Datasets API
+  description: REST API behind the official Unitlab Python SDK and CLI (pip package `unitlab`, https://github.com/teamunitlab/unitlab-sdk). Unitlab does not publish an OpenAPI document; this spec was derived by API Evangelist from the SDK source (src/unitlab/client.py, v2.5.1) and the docs at https://docs.unitlab.ai/. Paths, methods, parameters, auth, and error semantics are taken directly from the SDK code; response schemas reflect the example payloads published in the docs. Fields not documented by the provider are left unspecified.
+  version: 2.5.1
+  contact:
+    name: Unitlab Inc.
+    email: team@unitlab.ai
+    url: https://unitlab.ai
+  x-apievangelist:
+    generated: '2026-07-21'
+    method: derived
+    source: https://raw.githubusercontent.com/teamunitlab/unitlab-sdk/main/src/unitlab/client.py
+servers:
+- url: https://api.unitlab.ai
+  description: Production (default base URL in the SDK; overridable via UNITLAB_API_URL)
+security:
+- ApiKeyAuth: []
+tags:
+- name: Datasets
+  description: Dataset releases
+paths:
+  /api/sdk/releases/:
+    get:
+      operationId: listDatasets
+      tags:
+      - Datasets
+      summary: List dataset releases
+      description: Lists the available public and private dataset releases.
+      parameters:
+      - $ref: '#/components/parameters/Pretty'
+      responses:
+        '200':
+          description: List of dataset releases
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/sdk/releases/{dataset_id}/:
+    post:
+      operationId: downloadDataset
+      tags:
+      - Datasets
+      summary: Request a dataset download
+      description: Returns either a single annotation-archive URL (download_type "annotation", optionally filtered to one split) or a per-file manifest (download_type "files") whose entries carry inline content or a source URL.
+      parameters:
+      - name: dataset_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - download_type
+              properties:
+                download_type:
+                  type: string
+                  enum:
+                  - annotation
+                  - files
+                split_type:
+                  type: string
+                  description: Dataset split (e.g. train, validation); all splits when omitted
+      responses:
+        '200':
+          description: Download descriptor (annotation file URL or file manifest)
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    Pretty:
+      name: pretty
+      in: query
+      required: false
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+      description: Return a human-formatted table (1) instead of raw JSON (0)
+  responses:
+    Unauthorized:
+      description: Authentication failed (invalid or missing API key)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      description: Error envelope observed in the SDK error handling; either a detail or message string, or a field-to-errors map.
+      properties:
+        detail:
+          type: string
+        message:
+          type: string
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'API key issued at https://app.unitlab.ai (API Keys page), sent as "Authorization: Api-Key <key>". The SDK/CLI also read UNITLAB_API_KEY or ~/.unitlab/credentials.'
+externalDocs:
+  description: Unitlab CLI / Python SDK documentation
+  url: https://docs.unitlab.ai/cli-python-sdk/get-started

@@ -1,0 +1,236 @@
+openapi: 3.0.3
+info:
+  title: Unitlab SDK Datasets Projects API
+  description: REST API behind the official Unitlab Python SDK and CLI (pip package `unitlab`, https://github.com/teamunitlab/unitlab-sdk). Unitlab does not publish an OpenAPI document; this spec was derived by API Evangelist from the SDK source (src/unitlab/client.py, v2.5.1) and the docs at https://docs.unitlab.ai/. Paths, methods, parameters, auth, and error semantics are taken directly from the SDK code; response schemas reflect the example payloads published in the docs. Fields not documented by the provider are left unspecified.
+  version: 2.5.1
+  contact:
+    name: Unitlab Inc.
+    email: team@unitlab.ai
+    url: https://unitlab.ai
+  x-apievangelist:
+    generated: '2026-07-21'
+    method: derived
+    source: https://raw.githubusercontent.com/teamunitlab/unitlab-sdk/main/src/unitlab/client.py
+servers:
+- url: https://api.unitlab.ai
+  description: Production (default base URL in the SDK; overridable via UNITLAB_API_URL)
+security:
+- ApiKeyAuth: []
+tags:
+- name: Projects
+  description: Annotation projects
+paths:
+  /api/sdk/projects/:
+    get:
+      operationId: listProjects
+      tags:
+      - Projects
+      summary: List projects
+      description: Returns the authenticated account's annotation projects.
+      parameters:
+      - $ref: '#/components/parameters/Pretty'
+      responses:
+        '200':
+          description: List of projects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/sdk/projects/{project_id}/:
+    get:
+      operationId: getProject
+      tags:
+      - Projects
+      summary: Get project information
+      parameters:
+      - $ref: '#/components/parameters/ProjectId'
+      - $ref: '#/components/parameters/Pretty'
+      responses:
+        '200':
+          description: Project detail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /api/sdk/projects/{project_id}/upload-info/:
+    get:
+      operationId: getProjectUploadInfo
+      tags:
+      - Projects
+      summary: Get upload constraints for a project
+      description: Returns accepted file formats, the project's generic data type, and per-type maximum file sizes; the SDK calls this before uploading.
+      parameters:
+      - $ref: '#/components/parameters/ProjectId'
+      responses:
+        '200':
+          description: Upload constraints
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadInfo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /api/sdk/projects/{project_id}/upload-data/:
+    post:
+      operationId: uploadProjectData
+      tags:
+      - Projects
+      summary: Upload a data sample to a project
+      description: Multipart upload of one file (image, text, video, audio, medical DICOM/NIfTI, or PDF document). The SDK batches these calls with an upload session id; video files carry an fps sampling option.
+      parameters:
+      - $ref: '#/components/parameters/ProjectId'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+              - file
+              properties:
+                file:
+                  type: string
+                  format: binary
+                fps:
+                  type: string
+                  description: Frames per second (video files only; SDK default 1.0)
+                session_id:
+                  type: string
+                  format: uuid
+                  description: Upload session id grouping files from one run
+      responses:
+        '200':
+          description: File accepted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /api/sdk/projects/{project_id}/medical-upload-sessions/{session_id}/finalize/:
+    post:
+      operationId: finalizeMedicalUploadSession
+      tags:
+      - Projects
+      summary: Finalize a medical upload session
+      description: Called once after a batch containing medical files (DICOM/NIfTI/NRRD) so the platform groups them into series. Uses the same session id passed with each uploaded file.
+      parameters:
+      - $ref: '#/components/parameters/ProjectId'
+      - name: session_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Session finalized
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden - plan/subscription does not allow the operation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed (invalid or missing API key)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    Pretty:
+      name: pretty
+      in: query
+      required: false
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+      description: Return a human-formatted table (1) instead of raw JSON (0)
+  schemas:
+    UploadInfo:
+      type: object
+      properties:
+        accepted_formats:
+          type: array
+          items:
+            type: string
+        generic_type:
+          type: string
+          nullable: true
+          description: img | text | video | audio | medical | document
+        max_file_sizes:
+          type: object
+          additionalProperties:
+            type: integer
+          description: Max upload size in bytes per generic type
+        max_file_size:
+          type: integer
+          nullable: true
+    Project:
+      type: object
+      description: Fields as shown in the published SDK docs example.
+      properties:
+        pk:
+          type: string
+          format: uuid
+        name:
+          type: string
+        ai_model:
+          type: string
+        annotator_progress:
+          type: number
+        reviewer_progress:
+          type: number
+          nullable: true
+        number_of_data:
+          type: integer
+        creator:
+          type: string
+        created:
+          type: string
+          format: date-time
+    Error:
+      type: object
+      description: Error envelope observed in the SDK error handling; either a detail or message string, or a field-to-errors map.
+      properties:
+        detail:
+          type: string
+        message:
+          type: string
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'API key issued at https://app.unitlab.ai (API Keys page), sent as "Authorization: Api-Key <key>". The SDK/CLI also read UNITLAB_API_KEY or ~/.unitlab/credentials.'
+externalDocs:
+  description: Unitlab CLI / Python SDK documentation
+  url: https://docs.unitlab.ai/cli-python-sdk/get-started
