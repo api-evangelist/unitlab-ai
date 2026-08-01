@@ -1,20 +1,70 @@
 aid: unitlab-ai
 name: Unitlab AI
-description: Unitlab AI is a company surfaced as a portfolio company of 500-global and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Unitlab AI is an enterprise multimodal data annotation platform for AI
+  teams, providing a unified workspace to label images, video, audio, text,
+  documents, and medical (DICOM/NIfTI) data with AI-assisted auto-labeling
+  (including Segment Anything), human review workflows, dataset versioning
+  and releases, and bring-your-own-model integration. Programmatic access
+  comes through the Unitlab SDK API at api.unitlab.ai, consumed by the
+  official `unitlab` Python SDK and CLI on PyPI, authenticated with API keys.
+  Backed by 500 Global.
 url: https://raw.githubusercontent.com/api-evangelist/unitlab-ai/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://unitlab-storage.s3.us-east-2.amazonaws.com/Logo.png
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - 500-global
-x-tier: stub
+x-tier: enriched
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
-apis: []
+- Data Annotation
+- Machine Learning
+- Computer Vision
+- Datasets
+- Artificial Intelligence
+- Labeling
+apis:
+- aid: unitlab-ai:unitlab-ai-datasets-api
+  name: Unitlab AI Datasets API
+  description: Dataset releases
+  humanURL: https://docs.unitlab.ai/cli-python-sdk/get-started
+  baseURL: https://api.unitlab.ai
+  tags:
+  - Datasets
+  properties:
+  - type: OpenAPI
+    url: openapi/unitlab-ai-datasets-api-openapi.yml
+  - type: Documentation
+    url: https://docs.unitlab.ai/cli-python-sdk/get-started
+- aid: unitlab-ai:unitlab-ai-projects-api
+  name: Unitlab AI Projects API
+  description: Annotation projects
+  humanURL: https://docs.unitlab.ai/cli-python-sdk/get-started
+  baseURL: https://api.unitlab.ai
+  tags:
+  - Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/unitlab-ai-projects-api-openapi.yml
+  - type: Documentation
+    url: https://docs.unitlab.ai/cli-python-sdk/get-started
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -23,3 +73,54 @@ maintainers:
 common:
 - type: Website
   url: https://unitlab.ai
+- type: Documentation
+  url: https://docs.unitlab.ai/
+- type: APIReference
+  url: https://docs.unitlab.ai/cli-python-sdk/unitlab-python-sdk
+- type: GettingStarted
+  url: https://docs.unitlab.ai/cli-python-sdk/get-started
+- type: Blog
+  url: https://blog.unitlab.ai/
+- type: Pricing
+  url: https://unitlab.ai/en/pricing
+- type: SignUp
+  url: https://app.unitlab.ai/register
+- type: Login
+  url: https://app.unitlab.ai/
+- type: TermsOfService
+  url: https://unitlab.ai/en/term-of-use
+- type: PrivacyPolicy
+  url: https://unitlab.ai/en/privacy-policy
+- type: GitHubOrganization
+  url: https://github.com/teamunitlab
+- type: Authentication
+  url: authentication/unitlab-ai-authentication.yml
+- type: DomainSecurity
+  url: security/unitlab-ai-domain-security.yml
+- type: Packages
+  url: packages/unitlab-ai-packages.yml
+- type: SDKs
+  url: packages/unitlab-ai-packages.yml
+- type: CLI
+  url: cli/unitlab-ai-cli.yml
+- type: LLMsTxt
+  url: llms/unitlab-ai-llms.txt
+- type: MCPServer
+  url: mcp/unitlab-ai-mcp.yml
+- type: Conformance
+  url: conformance/unitlab-ai-conformance.yml
+- type: ErrorCatalog
+  url: errors/unitlab-ai-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/unitlab-ai-lifecycle.yml
+- type: Conventions
+  url: conventions/unitlab-ai-conventions.yml
+- type: DataModel
+  url: data-model/unitlab-ai-data-model.yml
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 17
+  pass: local-v1

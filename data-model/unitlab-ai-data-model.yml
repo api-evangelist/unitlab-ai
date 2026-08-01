@@ -1,0 +1,58 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/unitlab-ai-sdk-openapi.yml + https://docs.unitlab.ai/
+notes: >-
+  Entity graph derived from the SDK API surface and the published docs
+  (workspace/project/dataset management sections). Identifiers are UUIDs in
+  the `pk` field.
+entities:
+  - name: Workspace
+    id_field: pk (uuid)
+    description: Top-level collaboration container; holds members and projects (docs workspace-management).
+  - name: Member
+    id_field: pk (uuid)
+    description: Workspace/project participant with a role (annotator, reviewer) and performance stats.
+  - name: Project
+    id_field: pk (uuid)
+    description: Annotation project; carries ai_model, progress percentages, and data counts.
+  - name: DataSample
+    description: Uploaded file (image, text, video, audio, medical series, document) belonging to a project.
+  - name: UploadSession
+    id_field: session_id (uuid)
+    description: Client-generated grouping of one upload run; medical files are finalized into series per session.
+  - name: Dataset (Release)
+    id_field: pk (uuid)
+    description: Released, versioned snapshot of a project's annotations; downloadable as an annotation archive or per-file manifest, optionally by split (train/validation).
+  - name: AIModel
+    description: Built-in or bring-your-own model attached to a project for auto-labeling (referenced by Project.ai_model).
+relationships:
+  - from: Workspace
+    to: Project
+    kind: has_many
+  - from: Workspace
+    to: Member
+    kind: has_many
+  - from: Project
+    to: Member
+    kind: has_many
+    via: project members
+  - from: Project
+    to: DataSample
+    kind: has_many
+    via: upload-data
+  - from: Project
+    to: UploadSession
+    kind: has_many
+    via: session_id
+  - from: UploadSession
+    to: DataSample
+    kind: has_many
+    via: session_id
+  - from: Project
+    to: Dataset (Release)
+    kind: has_many
+    via: releases
+  - from: Project
+    to: AIModel
+    kind: has_one
+    via: ai_model

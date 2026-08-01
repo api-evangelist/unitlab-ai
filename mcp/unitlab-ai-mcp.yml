@@ -1,0 +1,33 @@
+generated: '2026-07-21'
+method: derived
+status: candidate
+source: openapi/unitlab-ai-sdk-openapi.yml
+notes: >-
+  No official Unitlab MCP server was found (web search, npm, GitHub org
+  teamunitlab, MCP registries). Candidate tool list derived from the SDK API
+  operations captured in openapi/unitlab-ai-sdk-openapi.yml.
+server:
+  name: unitlab-ai
+  transport: http
+tools:
+  - name: list_projects
+    description: List the account's annotation projects with progress stats
+    source_operation: openapi/unitlab-ai-sdk-openapi.yml#listProjects
+  - name: get_project
+    description: Get one annotation project's details
+    source_operation: openapi/unitlab-ai-sdk-openapi.yml#getProject
+  - name: get_project_upload_info
+    description: Get accepted formats and size limits before uploading data
+    source_operation: openapi/unitlab-ai-sdk-openapi.yml#getProjectUploadInfo
+  - name: upload_project_data
+    description: Upload a data sample (image/video/audio/text/medical/document) to a project
+    source_operation: openapi/unitlab-ai-sdk-openapi.yml#uploadProjectData
+  - name: finalize_medical_upload_session
+    description: Finalize a medical (DICOM/NIfTI) upload session so files group into series
+    source_operation: openapi/unitlab-ai-sdk-openapi.yml#finalizeMedicalUploadSession
+  - name: list_datasets
+    description: List available dataset releases
+    source_operation: openapi/unitlab-ai-sdk-openapi.yml#listDatasets
+  - name: download_dataset
+    description: Request a dataset download (annotations archive or per-file manifest)
+    source_operation: openapi/unitlab-ai-sdk-openapi.yml#downloadDataset

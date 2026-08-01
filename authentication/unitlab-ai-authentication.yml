@@ -1,0 +1,18 @@
+generated: '2026-07-21'
+method: searched
+source: openapi/unitlab-ai-sdk-openapi.yml
+docs: https://docs.unitlab.ai/how-to-integrate/create-an-api-key
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: 'API key issued at https://app.unitlab.ai (API Keys page), sent as "Authorization:
+    Api-Key <key>". The SDK/CLI also read UNITLAB_API_KEY or ~/.unitlab/credentials.'
+  sources:
+  - openapi/unitlab-ai-sdk-openapi.yml

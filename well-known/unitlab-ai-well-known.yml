@@ -1,0 +1,35 @@
+generated: '2026-07-21'
+method: searched
+notes: >-
+  Probed the /.well-known/ discovery surface on the website, API, docs, and
+  app hosts. No real well-known documents are published. app.unitlab.ai
+  returns HTTP 200 for any path (single-page-app shell HTML), so its 200 for
+  security.txt and /api/openapi.json are NOT real documents and were not
+  saved. hub.unitlab.ai (linked from the homepage) did not resolve in DNS at
+  probe time.
+hosts:
+  - host: https://unitlab.ai
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+  - host: https://api.unitlab.ai
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+  - host: https://docs.unitlab.ai
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+  - host: https://app.unitlab.ai
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        note: SPA shell HTML for all paths - not a real security.txt; not saved

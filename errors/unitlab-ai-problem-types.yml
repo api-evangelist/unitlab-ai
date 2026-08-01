@@ -1,0 +1,36 @@
+generated: '2026-07-21'
+method: derived
+format: json-envelope
+source: https://raw.githubusercontent.com/teamunitlab/unitlab-sdk/main/src/unitlab/client.py
+notes: >-
+  Derived from the official SDK's error handling (client.py + exceptions.py).
+  Errors are a plain JSON envelope - a "detail" or "message" string, or a
+  field-to-error-list map (Django REST Framework style) - not RFC 9457
+  problem+json. The SDK maps statuses to typed exceptions as recorded below.
+envelope:
+  keys: [detail, message]
+  field_errors: "{field: [error, ...]}"
+problems:
+  - status: 401
+    title: Authentication failed
+    sdk_exception: AuthenticationError
+    remediation: >-
+      Provide a valid API key from https://app.unitlab.ai (API Keys page) via
+      the "Authorization: Api-Key <key>" header, UNITLAB_API_KEY, or
+      `unitlab configure`.
+  - status: 403
+    title: Forbidden - subscription or plan limit
+    sdk_exception: SubscriptionError
+    remediation: The account's plan does not allow the operation; upgrade or adjust usage.
+  - status: 404
+    title: Resource not found
+    sdk_exception: NotFoundError
+    remediation: Check the project or dataset UUID; the SDK also maps "not found" message bodies to this error.
+  - status: 4xx/5xx
+    title: Other HTTP errors
+    sdk_exception: NetworkError
+    remediation: Message extracted from the detail/message key or field-error map of the response body.
+  - status: timeout
+    title: Request timeout
+    sdk_exception: TimeoutError
+    remediation: SDK default timeout is 60s (600s for uploads/downloads); retry with backoff (client ships 3 transport retries).

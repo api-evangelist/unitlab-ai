@@ -1,0 +1,32 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Unitlab SDK API
+  version: 1.0.0
+  x-apievangelist:
+    generated: '2026-07-21'
+    method: generated
+extends: openapi/unitlab-ai-sdk-openapi.yml
+actions:
+  - target: $.info
+    description: Catalog identity and provenance for the API Evangelist network
+    update:
+      x-apievangelist-slug: unitlab-ai
+      x-apievangelist-derived: true
+      x-apievangelist-note: >-
+        Spec derived from the official Python SDK source; Unitlab publishes no
+        OpenAPI document. Verify against the SDK before relying on schemas.
+  - target: $.paths['/api/sdk/projects/{project_id}/upload-data/'].post
+    description: Flag the upload operation's batching semantics for agents
+    update:
+      x-agent-guidance: >-
+        Call getProjectUploadInfo first and honor accepted_formats and
+        max_file_sizes; group files from one run under a single session_id;
+        finalize with finalizeMedicalUploadSession only when medical files
+        were uploaded.
+  - target: $.paths['/api/sdk/releases/{dataset_id}/'].post
+    description: Clarify the two download modes
+    update:
+      x-agent-guidance: >-
+        download_type "annotation" returns a JSON object with a "file" URL to
+        stream; download_type "files" returns an array of file entries with
+        either inline "content" or a "source" URL per file.

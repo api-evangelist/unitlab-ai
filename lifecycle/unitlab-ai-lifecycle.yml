@@ -1,0 +1,26 @@
+generated: '2026-07-21'
+method: searched
+source: https://unitlab.ai + https://pypi.org/project/unitlab/
+notes: >-
+  Unitlab publishes no versioning policy, deprecation policy, SLA, or status
+  page. The homepage links a changelog at hub.unitlab.ai/announcements, but
+  the hub.unitlab.ai host did not resolve in DNS when probed (2026-07-21), so
+  no changelog entries could be captured. status.unitlab.ai does not resolve.
+  SDK release cadence is the observable lifecycle signal: 110 PyPI releases,
+  latest 2.5.1.
+versioning:
+  scheme: none-documented
+  api_note: SDK API paths are unversioned (/api/sdk/...)
+  sdk_current: 2.5.1
+  sdk_releases: 110
+deprecation:
+  policy_url: null
+  sunset_header: false
+sla:
+  url: null
+status_page: null
+changelog:
+  advertised_url: https://hub.unitlab.ai/announcements
+  reachable: false
+  probe_note: NXDOMAIN on 2026-07-21
+deprecated_operations: []

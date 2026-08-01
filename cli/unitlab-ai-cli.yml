@@ -1,0 +1,47 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.unitlab.ai/cli-python-sdk/unitlab-cli
+repository: https://github.com/teamunitlab/unitlab-sdk
+notes: >-
+  First-party CLI shipped inside the `unitlab` PyPI package (Typer-based;
+  command surface verified against src/unitlab/cli.py v2.5.1). Credentials
+  are stored in ~/.unitlab/credentials by `unitlab configure`.
+name: unitlab
+install:
+  - manager: pip
+    command: pip install --upgrade unitlab
+commands:
+  - group: (root)
+    commands:
+      - name: configure
+        summary: Save the API key and/or API base URL to ~/.unitlab/credentials
+        options: [--api-key, --api-url]
+  - group: project
+    commands:
+      - name: list
+        summary: List the account's annotation projects
+      - name: detail
+        summary: Show one project's details
+        args: [pk (UUID)]
+      - name: upload
+        summary: Upload a directory of data samples to a project
+        args: [pk (UUID)]
+        options: [--directory, --fps, --api-key]
+  - group: dataset
+    commands:
+      - name: list
+        summary: List available dataset releases
+      - name: download
+        summary: Download a dataset (annotations or raw files)
+        args: [pk (UUID)]
+        options: [--download-type annotation|files, --split-type, --api-key]
+flows:
+  - name: Configure and pull labels
+    steps:
+      - unitlab configure --api-key <key>
+      - unitlab dataset list
+      - unitlab dataset download <dataset-id> --download-type annotation
+  - name: Feed a project with data
+    steps:
+      - unitlab project list
+      - unitlab project upload <project-id> --directory ./samples

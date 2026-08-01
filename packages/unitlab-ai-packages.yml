@@ -1,0 +1,21 @@
+generated: '2026-07-21'
+method: searched
+source: https://pypi.org/pypi/unitlab/json
+notes: >-
+  Searched npm, PyPI, and the GitHub org. One first-party package: the unitlab
+  Python SDK + CLI (published by Unitlab Inc., team@unitlab.ai; 110 releases,
+  latest 2.5.1). npm registry search for "unitlab" returned no packages; no
+  Maven/NuGet/Go/RubyGems/Packagist/crates.io first-party libraries found.
+packages:
+  - language: python
+    registry: pypi
+    name: unitlab
+    url: https://pypi.org/project/unitlab/
+    install: pip install --upgrade unitlab
+    official: true
+    version: 2.5.1
+    requires_python: '>=3.10'
+    repository: https://github.com/teamunitlab/unitlab-sdk
+    documentation: https://docs.unitlab.ai/cli-python-sdk/unitlab-python-sdk
+    description: Python SDK and CLI for the Unitlab.ai data annotation platform.
+    includes_cli: true

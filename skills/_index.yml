@@ -1,0 +1,11 @@
+generated: '2026-07-21'
+method: generated
+skills:
+  - file: unitlab-ai-upload-project-data.md
+    name: Upload data samples to a Unitlab annotation project
+    api: openapi/unitlab-ai-sdk-openapi.yml
+    operations: [listProjects, getProjectUploadInfo, uploadProjectData, finalizeMedicalUploadSession]
+  - file: unitlab-ai-download-dataset.md
+    name: Download an annotated dataset from Unitlab
+    api: openapi/unitlab-ai-sdk-openapi.yml
+    operations: [listDatasets, downloadDataset]

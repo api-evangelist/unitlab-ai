@@ -1,0 +1,35 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/unitlab-ai-sdk-openapi.yml + https://github.com/teamunitlab/unitlab-sdk
+standards:
+  - id: api-key-auth
+    conforms: true
+    evidence: >-
+      Single apiKey security scheme; "Authorization: Api-Key <key>" header
+      per the SDK client and the create-an-api-key docs page.
+  - id: oauth2
+    conforms: false
+    evidence: No OAuth flows documented; API-key auth only.
+  - id: oidc
+    conforms: false
+    evidence: /.well-known/openid-configuration returns 404 on all hosts.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: >-
+      Errors return a plain JSON envelope (detail/message string or
+      field-to-errors map, Django REST Framework style), not
+      application/problem+json.
+  - id: json-api
+    conforms: false
+    evidence: Plain JSON arrays/objects; no JSON:API media type.
+  - id: pagination
+    conforms: false
+    evidence: >-
+      No pagination parameters in the SDK API surface; list endpoints return
+      full arrays.
+  - id: idempotency
+    conforms: false
+    evidence: No idempotency-key mechanism documented in SDK or docs.
+  - id: rfc9116-security-txt
+    conforms: false
+    evidence: /.well-known/security.txt returns 404 on all hosts.

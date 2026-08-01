@@ -1,0 +1,45 @@
+generated: '2026-07-21'
+method: derived
+source: https://raw.githubusercontent.com/teamunitlab/unitlab-sdk/main/src/unitlab/client.py
+docs: https://docs.unitlab.ai/cli-python-sdk/get-started
+notes: >-
+  Cross-cutting request/response semantics derived from the official Python
+  SDK source and docs. Unitlab publishes no dedicated conventions page.
+authentication:
+  style: api-key
+  header: 'Authorization: Api-Key <key>'
+  env_var: UNITLAB_API_KEY
+  config_file: ~/.unitlab/credentials
+  profile: authentication/unitlab-ai-authentication.yml
+idempotency:
+  supported: false
+  note: >-
+    No idempotency-key mechanism. Uploads are grouped by a client-generated
+    session_id (UUID) per run, which scopes medical-series finalization but
+    is not a documented idempotency contract.
+pagination:
+  style: none
+  note: List endpoints return full arrays; a `pretty` query flag (0/1) toggles table formatting.
+field_expansion:
+  supported: false
+metadata:
+  supported: false
+request_tracing:
+  header: null
+versioning:
+  style: none
+  note: Unversioned /api/sdk/... paths; see lifecycle/unitlab-ai-lifecycle.yml
+error_envelope:
+  shape: detail-or-message string, or field-to-errors map (DRF style)
+  catalog: errors/unitlab-ai-problem-types.yml
+rate_limits:
+  signaling: none-documented
+  note: >-
+    No rate-limit headers or docs found; the SDK self-limits with 20
+    concurrent uploads / 50 concurrent downloads and 3 transport retries.
+timeouts:
+  default: 60s
+  uploads_downloads: 600s
+uploads:
+  transport: multipart/form-data, one file per request, batched client-side (batch_size 100)
+  accepted_types: [img, text, video, audio, medical, document]
