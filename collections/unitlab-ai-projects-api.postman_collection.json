@@ -1,0 +1,1157 @@
+{
+  "item": [
+    {
+      "id": "21cb64bd-b431-44ae-b1b0-d259f795a73a",
+      "name": "Projects",
+      "description": {
+        "content": "Annotation projects",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fcb6bd9a-31c7-4acd-a2fc-5aedea8bde24",
+          "name": "List projects",
+          "request": {
+            "name": "List projects",
+            "description": {
+              "content": "Returns the authenticated account's annotation projects.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "sdk",
+                "projects",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "0",
+                  "description": "Return a human-formatted table (1) instead of raw JSON (0)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4bb1619a-3d9b-4325-a3ec-4e7cf7362e6b",
+              "name": "List of projects",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "sdk",
+                    "projects",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pretty",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"pk\": \"65f5ae5c-d031-c6b3-10c0-3f871cdde62d\",\n    \"name\": \"string\",\n    \"ai_model\": \"string\",\n    \"annotator_progress\": 5254.286144864039,\n    \"reviewer_progress\": 3785.435028310732,\n    \"number_of_data\": 7684,\n    \"creator\": \"string\",\n    \"created\": \"1953-08-26T13:21:08.608Z\"\n  },\n  {\n    \"pk\": \"19651c31-2a53-e319-da62-64400bd9f7fc\",\n    \"name\": \"string\",\n    \"ai_model\": \"string\",\n    \"annotator_progress\": 3710.636739177244,\n    \"reviewer_progress\": 648.7672468494765,\n    \"number_of_data\": 9172,\n    \"creator\": \"string\",\n    \"created\": \"1982-11-13T15:48:49.299Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "90d48ee0-e023-4d39-95ac-0e9e08aced8d",
+              "name": "Authentication failed (invalid or missing API key)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "sdk",
+                    "projects",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pretty",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d62e1376-906e-4d45-824c-2cb19bc11440",
+          "name": "Get project information",
+          "request": {
+            "name": "Get project information",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "sdk",
+                "projects",
+                ":project_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "0",
+                  "description": "Return a human-formatted table (1) instead of raw JSON (0)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "20810419-e0f8-4b64-90cd-bc508543056e",
+              "name": "Project detail",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "sdk",
+                    "projects",
+                    ":project_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pretty",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pk\": \"ae11edba-8fd8-5eb8-e095-96a8e4fecc78\",\n  \"name\": \"string\",\n  \"ai_model\": \"string\",\n  \"annotator_progress\": 9879.407852849277,\n  \"reviewer_progress\": 7015.181801081864,\n  \"number_of_data\": 6746,\n  \"creator\": \"string\",\n  \"created\": \"1982-10-19T23:31:57.367Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8242f408-0ba8-433e-bb03-0103fbd2a4b1",
+              "name": "Authentication failed (invalid or missing API key)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "sdk",
+                    "projects",
+                    ":project_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pretty",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a9d9652-a9f3-4cb4-bac6-e6d604238d93",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "sdk",
+                    "projects",
+                    ":project_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pretty",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4ec3db8c-d089-4bd4-ba6a-0f9c6f46eb0b",
+          "name": "Get upload constraints for a project",
+          "request": {
+            "name": "Get upload constraints for a project",
+            "description": {
+              "content": "Returns accepted file formats, the project's generic data type, and per-type maximum file sizes; the SDK calls this before uploading.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "sdk",
+                "projects",
+                ":project_id",
+                "upload-info",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b11f6758-4eb1-4ce7-ab0f-0f4667d8448f",
+              "name": "Upload constraints",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "sdk",
+                    "projects",
+                    ":project_id",
+                    "upload-info",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accepted_formats\": [\n    \"string\",\n    \"string\"\n  ],\n  \"generic_type\": \"string\",\n  \"max_file_sizes\": {\n    \"key_0\": 116,\n    \"key_1\": 325\n  },\n  \"max_file_size\": 3223\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "95f143ad-1383-4926-a16d-e2714e643174",
+              "name": "Authentication failed (invalid or missing API key)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "sdk",
+                    "projects",
+                    ":project_id",
+                    "upload-info",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5ac1566-f0dd-43c6-94c0-8daec9f82e5e",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "sdk",
+                    "projects",
+                    ":project_id",
+                    "upload-info",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "84d399b8-7a34-44e9-a300-26fa5f1b14e8",
+          "name": "Upload a data sample to a project",
+          "request": {
+            "name": "Upload a data sample to a project",
+            "description": {
+              "content": "Multipart upload of one file (image, text, video, audio, medical DICOM/NIfTI, or PDF document). The SDK batches these calls with an upload session id; video files carry an fps sampling option.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "sdk",
+                "projects",
+                ":project_id",
+                "upload-data",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) "
+                },
+                {
+                  "key": "fps",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Frames per second (video files only; SDK default 1.0)"
+                },
+                {
+                  "key": "session_id",
+                  "value": "<uuid>",
+                  "type": "text",
+                  "description": "Upload session id grouping files from one run"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f8ca70d8-cbc0-42ad-ae4d-c4e2a36cdd8c",
+              "name": "File accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "sdk",
+                    "projects",
+                    ":project_id",
+                    "upload-data",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Frames per second (video files only; SDK default 1.0)",
+                        "type": "text/plain"
+                      },
+                      "key": "fps",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Upload session id grouping files from one run",
+                        "type": "text/plain"
+                      },
+                      "key": "session_id",
+                      "value": "<uuid>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a6de8875-6b2b-42ec-aca5-529e1e26ff5f",
+              "name": "Authentication failed (invalid or missing API key)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "sdk",
+                    "projects",
+                    ":project_id",
+                    "upload-data",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Frames per second (video files only; SDK default 1.0)",
+                        "type": "text/plain"
+                      },
+                      "key": "fps",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Upload session id grouping files from one run",
+                        "type": "text/plain"
+                      },
+                      "key": "session_id",
+                      "value": "<uuid>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4580ee73-4d5f-482c-a333-676239740c85",
+              "name": "Forbidden - plan/subscription does not allow the operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "sdk",
+                    "projects",
+                    ":project_id",
+                    "upload-data",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Frames per second (video files only; SDK default 1.0)",
+                        "type": "text/plain"
+                      },
+                      "key": "fps",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Upload session id grouping files from one run",
+                        "type": "text/plain"
+                      },
+                      "key": "session_id",
+                      "value": "<uuid>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f13823ec-288b-4a43-b8d5-4ed0cf4d7d55",
+          "name": "Finalize a medical upload session",
+          "request": {
+            "name": "Finalize a medical upload session",
+            "description": {
+              "content": "Called once after a batch containing medical files (DICOM/NIfTI/NRRD) so the platform groups them into series. Uses the same session id passed with each uploaded file.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "sdk",
+                "projects",
+                ":project_id",
+                "medical-upload-sessions",
+                ":session_id",
+                "finalize",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "session_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ece1bf77-1d7a-45a1-baf0-bfd73ee8372b",
+              "name": "Session finalized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "sdk",
+                    "projects",
+                    ":project_id",
+                    "medical-upload-sessions",
+                    ":session_id",
+                    "finalize",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "session_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d8e28245-0a60-4ed2-b9bf-e9b7a28a38d0",
+              "name": "Authentication failed (invalid or missing API key)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "sdk",
+                    "projects",
+                    ":project_id",
+                    "medical-upload-sessions",
+                    ":session_id",
+                    "finalize",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "session_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.unitlab.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1ed51d59-ba73-49d9-9390-adb563859778",
+    "name": "Unitlab SDK Datasets Projects API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API behind the official Unitlab Python SDK and CLI (pip package `unitlab`, https://github.com/teamunitlab/unitlab-sdk). Unitlab does not publish an OpenAPI document; this spec was derived by API Evangelist from the SDK source (src/unitlab/client.py, v2.5.1) and the docs at https://docs.unitlab.ai/. Paths, methods, parameters, auth, and error semantics are taken directly from the SDK code; response schemas reflect the example payloads published in the docs. Fields not documented by the provider are left unspecified.\n\nContact Support:\n Name: Unitlab Inc.\n Email: team@unitlab.ai",
+      "type": "text/plain"
+    }
+  }
+}

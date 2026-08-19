@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Unitlab SDK Datasets API",
+    "version": "2.5.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Datasets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List dataset releases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unitlab.ai/api/sdk/releases/",
+            "params": [
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Return a human-formatted table (1) instead of raw JSON (0)"
+              }
+            ]
+          },
+          "docs": "Lists the available public and private dataset releases."
+        },
+        {
+          "info": {
+            "name": "Request a dataset download",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.unitlab.ai/api/sdk/releases/:dataset_id/",
+            "params": [
+              {
+                "name": "dataset_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns either a single annotation-archive URL (download_type \"annotation\", optionally filtered to one split) or a per-file manifest (download_type \"files\") whose entries carry inline content or a source URL."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

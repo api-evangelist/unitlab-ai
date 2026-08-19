@@ -1,0 +1,148 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Unitlab SDK Datasets Projects API",
+    "version": "2.5.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unitlab.ai/api/sdk/projects/",
+            "params": [
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Return a human-formatted table (1) instead of raw JSON (0)"
+              }
+            ]
+          },
+          "docs": "Returns the authenticated account's annotation projects."
+        },
+        {
+          "info": {
+            "name": "Get project information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unitlab.ai/api/sdk/projects/:project_id/",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Return a human-formatted table (1) instead of raw JSON (0)"
+              }
+            ]
+          },
+          "docs": "Get project information"
+        },
+        {
+          "info": {
+            "name": "Get upload constraints for a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unitlab.ai/api/sdk/projects/:project_id/upload-info/",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns accepted file formats, the project's generic data type, and per-type maximum file sizes; the SDK calls this before uploading."
+        },
+        {
+          "info": {
+            "name": "Upload a data sample to a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.unitlab.ai/api/sdk/projects/:project_id/upload-data/",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "fps",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "session_id",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Multipart upload of one file (image, text, video, audio, medical DICOM/NIfTI, or PDF document). The SDK batches these calls with an upload session id; video files carry an fps sampling option."
+        },
+        {
+          "info": {
+            "name": "Finalize a medical upload session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.unitlab.ai/api/sdk/projects/:project_id/medical-upload-sessions/:session_id/finalize/",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Called once after a batch containing medical files (DICOM/NIfTI/NRRD) so the platform groups them into series. Uses the same session id passed with each uploaded file."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
