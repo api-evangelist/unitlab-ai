@@ -35,6 +35,14 @@ modified: '2026-07-21'
 tags:
 - Company
 - Data Annotation
+- Machine-Learning
+- Computer-Vision
+- Datasets
+- Artificial Intelligence
+- Labeling
+tags_raw:
+- Company
+- Data Annotation
 - Machine Learning
 - Computer Vision
 - Datasets
@@ -59,6 +67,8 @@ apis:
   humanURL: https://docs.unitlab.ai/cli-python-sdk/get-started
   baseURL: https://api.unitlab.ai
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
