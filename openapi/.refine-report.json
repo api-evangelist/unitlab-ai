@@ -1,8 +1,7 @@
 {
   "provider": "unitlab-ai",
   "sources": [
-    "unitlab-ai-datasets-api-openapi.yml",
-    "unitlab-ai-projects-api-openapi.yml"
+    "_original/unitlab-ai-sdk-openapi.yml"
   ],
   "outputs": [
     "unitlab-ai-datasets-api-openapi.yml",
@@ -11,6 +10,13 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "unitlab-ai-sdk-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "unitlab-ai-datasets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "unitlab-ai-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

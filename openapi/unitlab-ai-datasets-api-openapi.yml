@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Unitlab SDK Datasets API
-  description: REST API behind the official Unitlab Python SDK and CLI (pip package `unitlab`, https://github.com/teamunitlab/unitlab-sdk). Unitlab does not publish an OpenAPI document; this spec was derived by API Evangelist from the SDK source (src/unitlab/client.py, v2.5.1) and the docs at https://docs.unitlab.ai/. Paths, methods, parameters, auth, and error semantics are taken directly from the SDK code; response schemas reflect the example payloads published in the docs. Fields not documented by the provider are left unspecified.
+  description: REST API behind the official Unitlab Python SDK and CLI (pip package `unitlab`, https://github.com/teamunitlab/unitlab-sdk).
   version: 2.5.1
   contact:
     name: Unitlab Inc.
@@ -79,6 +79,28 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  schemas:
+    Error:
+      type: object
+      description: Error envelope observed in the SDK error handling; either a detail or message string, or a field-to-errors map.
+      properties:
+        detail:
+          type: string
+        message:
+          type: string
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed (invalid or missing API key)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     Pretty:
       name: pretty
@@ -91,28 +113,6 @@ components:
         - 1
         default: 0
       description: Return a human-formatted table (1) instead of raw JSON (0)
-  responses:
-    Unauthorized:
-      description: Authentication failed (invalid or missing API key)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  schemas:
-    Error:
-      type: object
-      description: Error envelope observed in the SDK error handling; either a detail or message string, or a field-to-errors map.
-      properties:
-        detail:
-          type: string
-        message:
-          type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Unitlab SDK Datasets Projects API
-  description: REST API behind the official Unitlab Python SDK and CLI (pip package `unitlab`, https://github.com/teamunitlab/unitlab-sdk). Unitlab does not publish an OpenAPI document; this spec was derived by API Evangelist from the SDK source (src/unitlab/client.py, v2.5.1) and the docs at https://docs.unitlab.ai/. Paths, methods, parameters, auth, and error semantics are taken directly from the SDK code; response schemas reflect the example payloads published in the docs. Fields not documented by the provider are left unspecified.
+  title: Unitlab SDK Projects API
+  description: REST API behind the official Unitlab Python SDK and CLI (pip package `unitlab`, https://github.com/teamunitlab/unitlab-sdk).
   version: 2.5.1
   contact:
     name: Unitlab Inc.
@@ -136,64 +136,15 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Forbidden:
-      description: Forbidden - plan/subscription does not allow the operation
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication failed (invalid or missing API key)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    ProjectId:
-      name: project_id
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
-    Pretty:
-      name: pretty
-      in: query
-      required: false
-      schema:
-        type: integer
-        enum:
-        - 0
-        - 1
-        default: 0
-      description: Return a human-formatted table (1) instead of raw JSON (0)
   schemas:
-    UploadInfo:
+    Error:
       type: object
+      description: Error envelope observed in the SDK error handling; either a detail or message string, or a field-to-errors map.
       properties:
-        accepted_formats:
-          type: array
-          items:
-            type: string
-        generic_type:
+        detail:
           type: string
-          nullable: true
-          description: img | text | video | audio | medical | document
-        max_file_sizes:
-          type: object
-          additionalProperties:
-            type: integer
-          description: Max upload size in bytes per generic type
-        max_file_size:
-          type: integer
-          nullable: true
+        message:
+          type: string
     Project:
       type: object
       description: Fields as shown in the published SDK docs example.
@@ -208,8 +159,9 @@ components:
         annotator_progress:
           type: number
         reviewer_progress:
-          type: number
-          nullable: true
+          type:
+          - number
+          - 'null'
         number_of_data:
           type: integer
         creator:
@@ -217,14 +169,65 @@ components:
         created:
           type: string
           format: date-time
-    Error:
+    UploadInfo:
       type: object
-      description: Error envelope observed in the SDK error handling; either a detail or message string, or a field-to-errors map.
       properties:
-        detail:
-          type: string
-        message:
-          type: string
+        accepted_formats:
+          type: array
+          items:
+            type: string
+        generic_type:
+          type:
+          - string
+          - 'null'
+          description: img | text | video | audio | medical | document
+        max_file_sizes:
+          type: object
+          additionalProperties:
+            type: integer
+          description: Max upload size in bytes per generic type
+        max_file_size:
+          type:
+          - integer
+          - 'null'
+  parameters:
+    Pretty:
+      name: pretty
+      in: query
+      required: false
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+      description: Return a human-formatted table (1) instead of raw JSON (0)
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  responses:
+    Unauthorized:
+      description: Authentication failed (invalid or missing API key)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Forbidden - plan/subscription does not allow the operation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
