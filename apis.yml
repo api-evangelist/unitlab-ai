@@ -48,8 +48,8 @@ modified: '2026-07-21'
 tags:
 - Company
 - Data Annotation
-- Machine-Learning
-- Computer-Vision
+- Machine Learning
+- Computer Vision
 - Datasets
 - Artificial Intelligence
 - Labeling
@@ -61,6 +61,8 @@ tags_raw:
 - Datasets
 - Artificial Intelligence
 - Labeling
+- Machine-Learning
+- Computer-Vision
 apis:
 - aid: unitlab-ai:unitlab-ai-datasets-api
   name: Unitlab AI Datasets API

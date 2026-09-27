@@ -79,24 +79,15 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  schemas:
-    Error:
-      type: object
-      description: Error envelope observed in the SDK error handling; either a detail or message string, or a field-to-errors map.
-      properties:
-        detail:
-          type: string
-        message:
-          type: string
   responses:
-    NotFound:
-      description: Resource not found
+    Unauthorized:
+      description: Authentication failed (invalid or missing API key)
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication failed (invalid or missing API key)
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
@@ -113,6 +104,15 @@ components:
         - 1
         default: 0
       description: Return a human-formatted table (1) instead of raw JSON (0)
+  schemas:
+    Error:
+      type: object
+      description: Error envelope observed in the SDK error handling; either a detail or message string, or a field-to-errors map.
+      properties:
+        detail:
+          type: string
+        message:
+          type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
