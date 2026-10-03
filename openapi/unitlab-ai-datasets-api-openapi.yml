@@ -80,14 +80,14 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
-    Unauthorized:
-      description: Authentication failed (invalid or missing API key)
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
+    Unauthorized:
+      description: Authentication failed (invalid or missing API key)
       content:
         application/json:
           schema:

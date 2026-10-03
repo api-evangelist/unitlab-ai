@@ -136,25 +136,25 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  parameters:
-    ProjectId:
-      name: project_id
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
-    Pretty:
-      name: pretty
-      in: query
-      required: false
-      schema:
-        type: integer
-        enum:
-        - 0
-        - 1
-        default: 0
-      description: Return a human-formatted table (1) instead of raw JSON (0)
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed (invalid or missing API key)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Forbidden - plan/subscription does not allow the operation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object
@@ -209,25 +209,25 @@ components:
         created:
           type: string
           format: date-time
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: Forbidden - plan/subscription does not allow the operation
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication failed (invalid or missing API key)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+  parameters:
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    Pretty:
+      name: pretty
+      in: query
+      required: false
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+      description: Return a human-formatted table (1) instead of raw JSON (0)
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
