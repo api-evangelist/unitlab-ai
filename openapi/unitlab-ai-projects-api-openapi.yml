@@ -137,12 +137,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Authentication failed (invalid or missing API key)
       content:
@@ -155,15 +149,13 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      description: Error envelope observed in the SDK error handling; either a detail or message string, or a field-to-errors map.
-      properties:
-        detail:
-          type: string
-        message:
-          type: string
     UploadInfo:
       type: object
       properties:
@@ -209,6 +201,14 @@ components:
         created:
           type: string
           format: date-time
+    Error:
+      type: object
+      description: Error envelope observed in the SDK error handling; either a detail or message string, or a field-to-errors map.
+      properties:
+        detail:
+          type: string
+        message:
+          type: string
   parameters:
     ProjectId:
       name: project_id
