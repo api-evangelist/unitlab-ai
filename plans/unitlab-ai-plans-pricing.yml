@@ -1,0 +1,73 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-07'
+method: searched
+source: https://unitlab.ai/en/pricing
+sources:
+- https://unitlab.ai/en/pricing
+provenance:
+  tool: all/0-working/economics/harvest_pricing.py
+  run: 20261007T104522
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: per-seat
+delivery:
+  delivery: managed+licensed
+  method: page
+  read: '2026-10-07'
+  evidence: Private cloud and on-premises deployments may have different pricing based on your deployment
+    requirements.
+  managed_tier: Active
+published: true
+note: Unitlab Cloud per-seat pricing with monthly/yearly toggle; Enterprise is quoted. Page notes private
+  cloud/on-prem may have different pricing.
+plan_count: 6
+currency: USD
+plans:
+- name: Free
+  price_text: Free forever
+  period: none
+  included_quota: Unlimited Workspace, Unlimited Project, 1 seat included, 1K Auto-Labeling, Private Datasets
+- name: Active
+  price_text: $99 /seat/month
+  price: 99
+  currency: USD
+  period: month
+  unit: seat
+  included_quota: Unlimited Workspace, Unlimited Project, Per-seat billing, 25K Auto-Labeling, Private
+    Datasets
+- name: Active (billed yearly)
+  price_text: $89 /seat/month
+  price: 89
+  currency: USD
+  period: month
+  unit: seat
+  included_quota: -10% annual discount
+- name: Pro
+  price_text: $195 /seat/month
+  price: 195
+  currency: USD
+  period: month
+  unit: seat
+  included_quota: Unlimited Workspace, Unlimited Project, Per-seat billing, 25K Auto-Labeling, Private
+    Datasets
+- name: Pro (billed yearly)
+  price_text: $180 /seat/month
+  price: 180
+  currency: USD
+  period: month
+  unit: seat
+  included_quota: -8% annual discount
+- name: Enterprise
+  price_text: Contact us
+  period: none
+  included_quota: Unlimited Workspace, Unlimited Project, Custom seat volume, Unlimited Auto-Labeling
+rate_limit_statements:
+- Audio duration 10h
+- Number of tokens 200K
+- Auto-Labeling 1K
+- Sources/Monthly 10K
+- Audio Duration 100h
+- Number of tokens 1M
+- Sources/Monthly 25K
+- Audio Duration 500h
+- Number of tokens 10M
