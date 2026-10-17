@@ -136,25 +136,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Authentication failed (invalid or missing API key)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: Forbidden - plan/subscription does not allow the operation
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
     UploadInfo:
       type: object
@@ -177,6 +158,14 @@ components:
           type:
           - integer
           - 'null'
+    Error:
+      type: object
+      description: Error envelope observed in the SDK error handling; either a detail or message string, or a field-to-errors map.
+      properties:
+        detail:
+          type: string
+        message:
+          type: string
     Project:
       type: object
       description: Fields as shown in the published SDK docs example.
@@ -201,22 +190,7 @@ components:
         created:
           type: string
           format: date-time
-    Error:
-      type: object
-      description: Error envelope observed in the SDK error handling; either a detail or message string, or a field-to-errors map.
-      properties:
-        detail:
-          type: string
-        message:
-          type: string
   parameters:
-    ProjectId:
-      name: project_id
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
     Pretty:
       name: pretty
       in: query
@@ -228,6 +202,32 @@ components:
         - 1
         default: 0
       description: Return a human-formatted table (1) instead of raw JSON (0)
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  responses:
+    Unauthorized:
+      description: Authentication failed (invalid or missing API key)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Forbidden - plan/subscription does not allow the operation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
